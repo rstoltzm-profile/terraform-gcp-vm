@@ -1,4 +1,5 @@
 terraform-docs-samples/
+local-notes.md
 # OSX leaves these everywhere on SMB shares
 ._*
 

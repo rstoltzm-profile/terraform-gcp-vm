@@ -15,35 +15,36 @@ ansible-playbook -i inv/hosts.ini playbooks/03-minikube.yaml
 ansible-playbook -i inv/hosts.ini playbooks/04-privs.yaml
 ```
 
+## Control minikube
+```bash
+ansible-playbook -i inv/hosts.ini playbooks/10-minikube-control.yaml -e minikube_action=start
+ansible-playbook -i inv/hosts.ini playbooks/10-minikube-control.yaml -e minikube_action=stop
+ansible-playbook -i inv/hosts.ini playbooks/10-minikube-control.yaml -e minikube_action=status
+```
+
 ## Install basic tools
 ```bash
-#!/bin/bash
-apt-get update -y
-apt-get install -y curl apt-transport-https ca-certificates conntrack
-```
-
-## Install Docker
-```bash
-# Install Docker
-apt-get install -y docker.io
-systemctl enable --now docker
-```
-
-## Install kubectl
-```bash
-curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
-chmod +x kubectl
-mv kubectl /usr/local/bin/
-```
-
-# Install Minikube
-```bash
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-install minikube-linux-amd64 /usr/local/bin/minikube
-
-# Add user to docker group
-usermod -aG docker $USER
-
-# Start Minikube (optional, can also do manually after SSH)
 # minikube start --driver=docker
+```
+
+## Todo: Refactor use ansible roles and playbooks
+```txt
+ansible/
+  roles/
+    dependencies/
+      tasks/
+        main.yaml
+    kubectl/
+      tasks/
+        main.yaml
+    minikube/
+      tasks/
+        main.yaml
+    privs/
+      tasks/
+        main.yaml
+  playbooks/
+    site.yaml
+  inv/
+    hosts.ini
 ```

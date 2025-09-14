@@ -1,0 +1,15 @@
+---
+- hosts: vm
+  become: yes
+  vars:
+    minikube_action: status  # default action
+  tasks:
+    - name: Run Minikube action
+      become_user: "{{ ansible_user }}"
+      shell: "minikube {{ minikube_action }}"
+      register: minikube_result
+
+    - name: Show minikube output (clean)
+      debug:
+        msg: "{{ item }}"
+      loop: "{{ minikube_result.stdout.splitlines() }}"

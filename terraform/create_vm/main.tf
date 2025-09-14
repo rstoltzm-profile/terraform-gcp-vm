@@ -17,7 +17,7 @@
 # [START compute_instances_quickstart]
 resource "google_compute_instance" "default" {
   name         = "vm-learning-01"
-  machine_type = "n1-standard-1"
+  machine_type = "n1-standard-2"
   zone         = "us-central1-a"
   project      = "vm-learning-472117"
 

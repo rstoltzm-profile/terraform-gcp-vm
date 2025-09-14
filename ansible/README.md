@@ -1,10 +1,18 @@
 # steps
 
 ## Setup and test ansible locally
-```
+```bash
 sudo apt update
 sudo apt install -y ansible
-ansible -i hosts.ini vm -m ping
+ansible -i inv/hosts.ini vm -m ping
+```
+
+## Run Playbooks
+```bash
+ansible-playbook -i inv/hosts.ini playbooks/01-dependencies.yaml
+ansible-playbook -i inv/hosts.ini playbooks/02-kubectl.yaml
+ansible-playbook -i inv/hosts.ini playbooks/03-minikube.yaml
+ansible-playbook -i inv/hosts.ini playbooks/04-privs.yaml
 ```
 
 ## Install basic tools

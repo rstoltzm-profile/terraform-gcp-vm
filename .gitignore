@@ -1,5 +1,5 @@
 terraform-docs-samples/
-ansible/hosts.ini
+ansible/inv/hosts.ini
 local-notes.md
 # OSX leaves these everywhere on SMB shares
 ._*

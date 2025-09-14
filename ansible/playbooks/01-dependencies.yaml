@@ -1,0 +1,14 @@
+---
+- hosts: vm
+  become: yes
+  tasks:
+    - name: Install dependencies
+      apt:
+        name:
+          - curl
+          - apt-transport-https
+          - ca-certificates
+          - conntrack
+          - docker.io
+        state: present
+        update_cache: yes

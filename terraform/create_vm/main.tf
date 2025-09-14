@@ -23,13 +23,27 @@ resource "google_compute_instance" "default" {
 
   boot_disk {
     initialize_params {
-      image = "ubuntu-minimal-2210-kinetic-amd64-v20230126"
+      image = "ubuntu-minimal-2204-jammy-v20250826"
+      size = 20
+      type = "pd-balanced"
     }
+    auto_delete = true
   }
 
   network_interface {
     network = "default"
     access_config {}
   }
+
+  # metadata = {ssh-keys = "name:file"}
+
+  tags = ["http-server", "https-server"] 
+  
+  labels = {
+    environment = "dev"
+    owner       = "rstoltzm-profile"
+  }
+
 }
+
 # [END compute_instances_quickstart]

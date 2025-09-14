@@ -11,6 +11,8 @@ gcloud beta billing projects describe PROJECT_ID
 
 ## Terraform
 ```bash
+gcloud compute images list --project=ubuntu-os-cloud --no-standard-images --filter="name~'ubuntu.*'" --sort-by=~creationTimestamp
+# update image in main.tf
 cd terraform/create_vm
 terraform init
 terraform plan
@@ -27,24 +29,11 @@ gcloud compute ssh vm-name --zone=us-central1-a --project=PROJECT_ID
 
 ## Basic Info
 ```bash
-# Show OS release info
 cat /etc/os-release
-
-# Show kernel version
 uname -a
-
-# Show CPU info
-lscpu
-
-# Show memory info
+lscpu | grep "CPU(s):"
 free -h
-
-# Show disk usage
 df -h
-
-# Show all block devices
 lsblk
-
-# Show network interfaces
 ip addr
 ```
